@@ -1,33 +1,33 @@
 import React from 'react'
-import {Card, CardBody, Stack, Heading, Text, Divider, CardFooter, ButtonGroup, Button, Image} from '@chakra-ui/react'
+import {Card, CardBody, Stack, Heading, Text, Divider, CardFooter, ButtonGroup, Button, Image, SimpleGrid,CardHeader} from '@chakra-ui/react'
 import ItemCount from './ItemCount'
+import { Link } from 'react-router-dom'
 
-const Item = ({nombre,descripcion,precio,imagen}) => {
+const Item = ({id,nombre,descripcion,precio,imagen}) => {
 return (
-    <Card maxW='sm'>
-        <CardBody>
-            <Image
-                src={imagen}
-                alt={nombre}
-                borderRadius='lg'
-            />
-            <Stack mt='6' spacing='3'>
-            <Heading size='md'>{nombre}</Heading>
-            <Text>
-                {descripcion}
-            </Text>
-            <Text color='blue.600' fontSize='2xl'>
-                ${precio}
-            </Text>
-            </Stack>
-        </CardBody>
-        <CardFooter>
-            <ButtonGroup spacing='2'>
-                <ItemCount/>
-            </ButtonGroup>
-        </CardFooter>
-        <Divider />
-    </Card>
+    <SimpleGrid spacing={20} borderColor='black' borderRadius='md' borderWidth='2px' templateColumns='repeat(auto-fill, minmax(400px, 1fr))'>
+        <Card align="center">
+            <CardHeader>
+            <Heading size='lg'>{nombre}</Heading>
+            </CardHeader>
+            <CardBody>
+            <Link to = {`/product/${id}`}>
+                <Image
+                    src={imagen}
+                    alt={nombre}
+                    borderRadius='lg'
+                />
+            </Link>  
+            </CardBody>
+            <CardFooter>
+            <Link to = {`/product/${id}`}>
+                <Button colorScheme='blue' variant='outline'>
+                    Más info
+                </Button>
+            </Link>
+            </CardFooter>
+        </Card>
+        </SimpleGrid>
 )
 }
 
