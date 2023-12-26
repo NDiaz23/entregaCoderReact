@@ -8,25 +8,21 @@ import { Container } from '@chakra-ui/react'
 const ItemListContainer = ({greeting}) => {
   const [productos,setProductos] = useState([])
 
-  const {categoryId} = useParams()
+  const {category} = useParams()
   
   useEffect(() => {
     //llamada a la API para obtener los productos
     getProductos()
       .then(response => {
         const productos = response
-        if (categoryId > 0){
-          const productosPorCategoria = productos.filter((producto) => producto.categoria == categoryId)
-          setProductos(productosPorCategoria)
-        }else{
-          setProductos(productos)
-        }
+        const productosPorCategoria = productos.filter((producto) => producto.categoria == category)
         
+        category ? setProductos(productosPorCategoria) : setProductos(productos)
       })
       .catch(error => {
         console.log('Error al cargar los productos', error)
       })
-  }, [categoryId])
+  }, [category])
   
   return (
     <div>

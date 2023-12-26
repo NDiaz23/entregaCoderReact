@@ -21,19 +21,19 @@ const NavBar = () => {
                 </MenuButton>
                 <MenuList>
                 
-                <Link to = '/category/1'>
+                <Link to = '/category/clothes'>
                     <MenuItem>Indumentaria</MenuItem>
                 </Link>
 
-                <Link to = '/category/2'>
+                <Link to = '/category/shoes'>
                     <MenuItem>Calzado</MenuItem>
                 </Link>
 
-                <Link to = '/category/3'>
+                <Link to = '/category/accesories'>
                     <MenuItem>Accesorios</MenuItem>
                 </Link>
 
-                <Link to = '/category/4'>
+                <Link to = '/category/specials'>
                     <MenuItem>Especiales</MenuItem>
                 </Link>
                 </MenuList>
