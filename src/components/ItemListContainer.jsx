@@ -25,7 +25,7 @@ const ItemListContainer = ({greeting}) => {
   }, [category])
   
   return (
-    <div>
+    <div id="navBarItems">
       <h2>{greeting}</h2>
       <Container maxW='6xl' bg='black.600' centerContent>
         <ItemList productos = {productos}/>

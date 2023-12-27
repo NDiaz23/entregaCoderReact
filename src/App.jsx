@@ -11,7 +11,7 @@ import Cart from './components/Cart'
 
 const App = () => {
   return (
-    <div className="App">
+    <div className="App" bg='black.800'>
       <BrowserRouter>
         
         <NavBar/>
