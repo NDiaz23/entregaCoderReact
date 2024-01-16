@@ -1,34 +1,24 @@
 import React from 'react'
 import { useState } from 'react'
 import {Button} from '@chakra-ui/react'
+import { useContext } from 'react'
+import { CartContext } from '../context/CartContext'
 
-const ItemCount = () => {
-
-    const[contador,setContador] = useState(0)
-
-    const sumar = () => {
-        if (contador < 10){
-            setContador(contador + 1)
-        }
-    }
-
-    const restar = () => {
-        if (contador > 0){
-            setContador(contador - 1)
-        }
-    }
+const ItemCount = ({cantidad, sumar, restar, agregarProducto}) => {
 
 return (
     <div>   
+        <p>Unidades:</p>
         <Button colorScheme='teal' size='xs' onClick={sumar}>
             +
         </Button>
         <Button>
-            Agregar al carrito {contador}
+            {cantidad}
         </Button>
         <Button colorScheme='teal' size='xs'onClick={restar}>
             -
         </Button>
+        <Button className= "btnAgregar" onClick= {agregarProducto}>Agregar al carrito</Button>
     </div>
 )
 }
