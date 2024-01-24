@@ -1,10 +1,17 @@
-import React from 'react'
-import { FaShoppingCart } from "react-icons/fa";
+import React, { useContext } from 'react'
+import { Link } from 'react-router-dom'
+import { CartContext } from '../context/CartContext'
 
 const CartWidget = () => {
+
+  const {cantidadCarrito} = useContext(CartContext);
+
   return (
     <div>
-      <FaShoppingCart />
+      <Link to = '/cart'>
+        Carrito
+        <span>  {cantidadCarrito()}</span>
+      </Link>
     </div>
   )
 }

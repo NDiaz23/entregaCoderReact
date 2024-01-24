@@ -7,6 +7,8 @@ import About from './components/About'
 import Cart from './components/Cart'
 import { useState } from 'react'
 import {CartContext} from './context/CartContext'
+import Collection from './components/Collection'
+import Document from './components/Document'
 
 
 
@@ -16,12 +18,32 @@ const App = () => {
   
   const [carrito, setCarrito] = useState([]);
 
-  const user = "NicoDiaz";
-  const edad = 26;
+  const agregarProducto = (producto, contador) => {
+    const prodAgregado = {...producto,cantidad: contador};
+
+    //Verifico primero si me agregan el mismo producto en diferente momento
+    const nuevoCarrito  = [...carrito];
+    const prodEnCarrito = nuevoCarrito.find((producto) => producto.id === prodAgregado.id);
+
+
+    if(prodEnCarrito){
+        prodEnCarrito.cantidad = prodEnCarrito.cantidad + contador;
+        setCarrito(nuevoCarrito);
+    }else{
+        nuevoCarrito.push(prodAgregado);
+    }
+
+    setCarrito(nuevoCarrito);
+  }
+
+
+  const cantidadCarrito = () => {
+    return carrito.reduce((inc, prod) => inc + prod.cantidad, 0);
+  }
 
   return (
     <div className="App" bg='black.800'>
-      <CartContext.Provider value={ {carrito, setCarrito} }>
+      <CartContext.Provider value={ {carrito, agregarProducto, cantidadCarrito} }>
 
         <BrowserRouter>
           <NavBar/>
@@ -33,9 +55,9 @@ const App = () => {
             <Route exact path= '/product/:productId' element = {<ItemDetailContainer/>}/>
           </Routes>
         </BrowserRouter>
-
       </CartContext.Provider>
-
+      <Collection/>
+      <Document/>
 
 
       {/* <ItemListContainer greeting={"Bienvenidos a TodoDeporte!"}/> */}

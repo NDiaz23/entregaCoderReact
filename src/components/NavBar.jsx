@@ -69,11 +69,16 @@ const NavBar = () => {
 
             <Spacer bg='black.800'/>
 
-            <Link to = "/cart">
+            {/* <Link to = "/cart">
                 <Box p='3' bg='#D8D8D8' borderRadius='2px'>
                     <CartWidget/>
                 </Box>
-            </Link>
+            </Link> */}
+            <Box as='button' p='3' bg='#D8D8D8' borderRadius='md' borderColor='#000000' color='black' px={6} h={12}>
+                <CartWidget />
+            </Box>
+            
+
         </Flex>
     </div>
   )
