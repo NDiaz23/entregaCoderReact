@@ -8,7 +8,7 @@ const Collection = () => {
     
     useEffect(() => {
 
-        const db = getFirestore()
+        const db = getFirestore();
         const itemsCollection = collection(db, "indumentaria");
 
         getDocs(itemsCollection).then((snapshot) =>{

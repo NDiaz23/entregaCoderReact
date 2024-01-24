@@ -56,8 +56,6 @@ const App = () => {
           </Routes>
         </BrowserRouter>
       </CartContext.Provider>
-      <Collection/>
-      <Document/>
 
 
       {/* <ItemListContainer greeting={"Bienvenidos a TodoDeporte!"}/> */}

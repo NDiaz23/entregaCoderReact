@@ -3,25 +3,29 @@ import { getProductos } from '../asyncMock'
 import ItemList from './ItemList'
 import { useParams } from 'react-router-dom'
 import { Container } from '@chakra-ui/react'
+import {collection, getFirestore, getDocs, query, where} from "firebase/firestore"
 
 
 const ItemListContainer = ({greeting}) => {
   const [productos,setProductos] = useState([])
 
   const {category} = useParams()
-  
+
+  const db = getFirestore()
+
+
   useEffect(() => {
-    //llamada a la API para obtener los productos
-    getProductos()
-      .then(response => {
-        const productos = response
-        const productosPorCategoria = productos.filter((producto) => producto.categoria == category)
-        
-        category ? setProductos(productosPorCategoria) : setProductos(productos)
-      })
-      .catch(error => {
-        console.log('Error al cargar los productos', error)
-      })
+    const productos = collection(db, "products");
+
+    const queryCategory = category ? query(productos, where("categoria","==",category)) : productos;
+
+    getDocs(queryCategory).then((resp)=> {
+      setProductos(
+        resp.docs.map((doc) => {
+          return {...doc.data(),id: doc.id}
+        } )
+      );
+    })
   }, [category])
   
   return (

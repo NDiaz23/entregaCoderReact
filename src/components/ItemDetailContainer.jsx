@@ -4,28 +4,24 @@ import ItemCount from './ItemCount'
 import ItemDetail from './ItemDetail'
 import { useParams } from 'react-router-dom'
 import { Container } from '@chakra-ui/react'
+import { getFirestore, getDoc, doc } from 'firebase/firestore'
 
 const ItemDetailContainer = () => {
     const [producto,setProducto] = useState([])
 
     const {productId} = useParams()
 
-
+    const db = getFirestore()
     
     useEffect(() => {
-        //llamada a la API para obtener los productos
-        getProductos()
-          .then(response => {
-            const productos = response
-            if(productId > 0){
-            const productoFiltrado = productos.find((producto) => producto.id == productId)
-            setProducto(productoFiltrado)
-            }
-          })
-          .catch(error => {
-            console.log('Error al cargar los productos', error)
-          })
-      }, [])
+        const docProd = doc(db,"products", productId);
+
+        getDoc(docProd).then((resp) =>{
+          setProducto(
+            {...resp.data(), id: resp.id}
+          )
+        } )
+      }, [productId])
 
     return (
         <div>
