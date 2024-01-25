@@ -41,9 +41,17 @@ const App = () => {
     return carrito.reduce((inc, prod) => inc + prod.cantidad, 0);
   }
 
+  const precioTotal = () => {
+    return carrito.reduce((inc, prod) => inc + prod.precio * prod.cantidad, 0);
+  }
+
+  const vaciarCarrito = () => {
+    setCarrito([]);
+  }
+
   return (
     <div className="App" bg='black.800'>
-      <CartContext.Provider value={ {carrito, agregarProducto, cantidadCarrito} }>
+      <CartContext.Provider value={ {carrito, agregarProducto, cantidadCarrito, precioTotal, vaciarCarrito} }>
 
         <BrowserRouter>
           <NavBar/>
