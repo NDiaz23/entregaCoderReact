@@ -1,5 +1,4 @@
 import {useState,useEffect} from 'react'
-import { getProductos } from '../asyncMock'
 import ItemList from './ItemList'
 import { useParams } from 'react-router-dom'
 import { Container } from '@chakra-ui/react'

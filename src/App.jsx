@@ -7,8 +7,6 @@ import About from './components/About'
 import Cart from './components/Cart'
 import { useState } from 'react'
 import {CartContext} from './context/CartContext'
-import Collection from './components/Collection'
-import Document from './components/Document'
 
 
 
